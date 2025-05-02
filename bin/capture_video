@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+RESOLUTION=$(xrandr | grep '*' | awk {'print $1'})
+OUTPUT=${HOME}/Videos/capture-video-$(date +%s).mkv
+
+ffmpeg -f x11grab -f alsa -ac 2 -i hw:0 ${OUTPUT}

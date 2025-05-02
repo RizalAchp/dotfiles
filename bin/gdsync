@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+REMOTE_LOC='GoogleDrive:<REMOTE_LOC>'
+LOCAL_LOC_='<LOCAL_LOC>'
+LOCAL_LOC="$(echo $LOCAL_LOC_)"
+[ -d "${LOCAL_LOC}" ] && echo "syncing dir '$LOCAL_LOC'" || echo "No directory '$LOCAL_LOC'. mount first!"
+
+case $1 in
+  remote)
+    rclone sync -P $REMOTE_LOC $LOCAL_LOC
+    ;;
+  local)
+    rclone sync -P $LOCAL_LOC $REMOTE_LOC 
+    ;;
+  *)
+    echo "Unknown argument: $1"
+    echo "USAGE: $0 [remote: sync remote change to local] | [local: sync local change to remote]"
+    ;;
+esac
