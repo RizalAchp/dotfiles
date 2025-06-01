@@ -10,6 +10,7 @@ alacritty|symlink|.config
 bash|symlink|.config
 .bashrc|symlink|
 .bash_profile|symlink|
+.Xmodmap|symlink|
 nvim|symlink|.config
 bin|symlink|.local
 #fish|symlink|.config
