@@ -1,51 +1,7 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-	export TERM='gnome-256color';
-elif infocmp xterm-256color >/dev/null 2>&1; then
-	export TERM='xterm-256color';
-fi;
-export COLORTERM=truecolor
-export BASH_CONFIG_DIR="$HOME/.config/bash"
-
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
-[[ -f "$BASH_CONFIG_DIR/functions" ]] && source "$BASH_CONFIG_DIR/functions"
-[[ -f "$BASH_CONFIG_DIR/aliases" ]]   && source "$BASH_CONFIG_DIR/aliases"
-[[ -f "$BASH_CONFIG_DIR/path" ]]      && source "$BASH_CONFIG_DIR/path";
-
-export HISTSIZE='512000';
-export HISTFILESIZE="${HISTSIZE}";
-export HISTFILE="$BASH_CONFIG_DIR/history"
-export HISTCONTROL=ignoredups:erasedups
-
-export CC="/usr/bin/clang"
-export CXX="/usr/bin/clang++"
-
-# Highlight section titles in manual pages.
-export LESS_TERMCAP_md="${yellow}";
-# Don’t clear the screen after quitting a manual page.
-export MANPAGER='less -X';
-
-export OPENER="/usr/bin/xdg-open"
-export READER="/usr/bin/zathura"
-export VIDEO="/usr/bin/mpv"
-export IMAGE="/usr/bin/feh"
-export BROWSER="/usr/bin/brave"
-export TERMINAL="/usr/bin/alacritty"
-export FILEMANAGER="/usr/bin/thunar"
-export EDITOR="nvim"
-export VISUAL="neovide"
-export POWERMENU="$HOME/.local/bin/powermenu.sh"
-export COOMER="$HOME/.local/bin/coomer"
-
-export WINEPREFIX="$HOME/Wine"
-export WINE_PREFIX="$WINEPREFIX"
-
-# export QT_STYLE_OVERRIDE="gtk2"
-export GTK_USE_PORTAL=1
-export GIT_EDITOR="$EDITOR"
-
-eval "$(zoxide init bash)"
+[[ -f "$HOME/.config/bash/functions" ]] && source "$HOME/.config/bash/functions";
+[[ -f "$HOME/.config/bash/exports" ]]   && source "$HOME/.config/bash/exports";
 
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx

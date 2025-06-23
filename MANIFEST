@@ -2,7 +2,6 @@
 .gitconfig|symlink|
 .gtkrc-2.0|symlink|
 .xinitrc|symlink|
-.config/mimeapps.list|symlink|
 .config/starship.toml|symlink|
 .config/user-dirs.dirs|symlink|
 .config/user-dirs.locale|symlink|
@@ -14,5 +13,5 @@ bash|symlink|.config
 nvim|symlink|.config
 bin|symlink|.local
 #fish|symlink|.config
-#awesome|symlink|.config
+awesome|symlink|.config
 settings.ini|symlink|.config/gtk-3.0

@@ -33,8 +33,8 @@ function _G.OnAttachLsp(_, buf)
     nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('gf', vim.lsp.buf.format, '[G]o [F]ormat Documents')
     nmap('gc', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('g,', vim.diagnostic.goto_prev, '[G]oto Prev Diagnostic')
-    nmap('g.', vim.diagnostic.goto_next, '[G]oto Next Diagnostic')
+    nmap('g,', function() vim.diagnostic.jump({ count = 1 }) end, '[G]oto Prev Diagnostic')
+    nmap('g.', function() vim.diagnostic.jump({ count = 1 }) end, '[G]oto Next Diagnostic')
 
     nmap('<leader>dh', vim.diagnostic.hide, '[D]iagnostic [H]ide')
     nmap('<leader>ds', vim.diagnostic.show, '[D]iagnostic [S]how')
@@ -57,3 +57,8 @@ function _G.OnAttachLsp(_, buf)
         end
     end, { desc = "Format current buffer with LSP" })
 end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('rizalachp-lsp-attach', { clear = true }),
+    callback = function(event) OnAttachLsp(event.data, event.buf) end
+})

@@ -7,17 +7,29 @@ return {
 
         -- Adds LSP completion capabilities
         { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-nvim-lua' },
         { 'hrsh7th/cmp-nvim-lsp-signature-help' },
         { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-nvim-lua' },
         -- { 'hrsh7th/cmp-calc' },
         { 'saadparwaiz1/cmp_luasnip' },
         { 'hrsh7th/cmp-vsnip' },
         { 'hrsh7th/vim-vsnip' },
         { 'honza/vim-snippets' },
+        {
+            'saghen/blink.compat',
+            -- use v2.* for blink.cmp v1.*
+            version = '2.*',
+            -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+            lazy = true,
+            -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+            opts = {},
+        },
+        { 
+            'saghen/blink.cmp',
+            version = '1.*',
+        },
         -- Snippet Engine & its associated nvim-cmp source
         {
             "L3MON4D3/LuaSnip",

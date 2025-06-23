@@ -1,26 +1,20 @@
 ---@type LazySpec
 return {
     'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
-    ft = 'rust',
+    version = '^6', -- Recommended
+    lazy = false,   -- This plugin is already lazy
     dependencies = {
         "nvim-lua/plenary.nvim",
         "mfussenegger/nvim-dap",
         "lvimuser/lsp-inlayhints.nvim",
     },
-    lazy = false, -- This plugin is already lazy
     config = function()
+        ---@module rustaceanvim
         ---@type fun():rustaceanvim.Opts
         vim.g.rustaceanvim = function()
             return {
-                ---@type rustaceanvim.tools.Opts
-                tools = {
-                    executor = 'termopen',
-                    test_executor = 'termopen',
-                },
                 ---@type rustaceanvim.lsp.ClientOpts
                 server = {
-                    -- cmd = { 'rustup', 'run', 'rust-analyzer' },
                     standalone = false,
                     on_attach = function(c, bufnr)
                         OnAttachLsp(c, bufnr)
@@ -31,7 +25,7 @@ return {
                         ---@param mode string|table|nil
                         local map = function(keys, cmd, desc, mode)
                             ---@type vim.keymap.set.Opts
-                            local opt = { buffer = bufnr, noremap = true, desc = 'RUSTLSP: ' .. desc }
+                            local opt = { buffer = bufnr, remap = true, desc = 'RUSTLSP: ' .. desc }
 
                             if type(cmd) == "function" then
                                 vim.keymap.set(mode or 'n', keys, cmd, opt)
@@ -61,13 +55,16 @@ return {
                     end,
                     default_settings = {
                         ['rust-analyzer'] = {
+                            check = {
+                                command = "clippy",
+                            },
                             cargo = {
-                                allTargets = true,
-                                allFeatures = true,
+                                -- allTargets = true,
+                                -- allFeatures = true,
                                 buildScripts = { enable = true }
                             },
                             procMacro = { enable = true },
-                            completion = { postfix = { enable = false } }
+                            -- completion = { postfix = { enable = false } }
                         },
                     },
                 }

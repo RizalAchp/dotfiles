@@ -55,6 +55,19 @@ ex ()
   fi
 }
 
+function export_if_exists() {
+    [[ -e "$2" ]] && export $1="$2"
+}
+
+function add2path_front() {
+    local path_to_add="${1:?Need at least 1 arguments}"
+    [[ -d "$path_to_add" ]] && export PATH="$path_to_add:$PATH";
+}
+function activate_env() {
+    local path_to_env="${1:?Need at least 1 arguments}"
+    [[ -f "$path_to_env" ]] && source $path_to_env;
+}
+
 # # navigation
 # up () {
 #   local d=""

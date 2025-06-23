@@ -1,12 +1,13 @@
 local key_map = function(mode, keys, func, desc)
     vim.keymap.set(mode, keys, func, { noremap = true, desc = desc })
 end
-
+key_map('n', '<ESC>', '<cmd>nohlsearch<CR>')
 key_map('t', '<ESC>', '<C-\\><C-n>', 'TERMINAL: Exit terminal mode')
-key_map({'t', 'n'}, '<C-k>', '<CMD>:lnext<CR>zz', 'TERMINAL: go to [N]ext error')
-key_map({'t', 'n'}, '<C-j>', '<CMD>:lprev<CR>zz', 'TERMINAL: go to [P]rev error')
-key_map({'t', 'n'}, '<C-h>', '<CMD>:lfirst<CR>zz', 'TERMINAL: go to [F]irst error ')
-key_map({'t', 'n'}, '<C-l>', '<CMD>:llast<CR>zz', 'TERMINAL: go to [L]ast error')
+
+key_map('n', '<C-h>', '<C-w><C-h>', '[WINDOW] Move focus to the left window')
+key_map('n', '<C-l>', '<C-w><C-l>', '[WINDOW] Move focus to the right window')
+key_map('n', '<C-j>', '<C-w><C-j>', '[WINDOW] Move focus to the lower window')
+key_map('n', '<C-k>', '<C-w><C-k>', '[WINDOW] Move focus to the upper window')
 
 key_map({ 'n', 'v' }, '<Space>', '<Nop>', 'GENERAL: set Space into <Nop>')
 key_map('n', '<Leader>tt', '<CMD>vnew term://bash<CR>', 'OPEN TERMINAL')

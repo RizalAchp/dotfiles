@@ -11,7 +11,7 @@ _G.SafeRequire = function(modname)
 end
 
 if vim.g.vscode then
-    require 'rizalachp_vscodemode';
+    require('rizalachp_vscodemode');
 else
     local main_module = SafeRequire('rizalachp')
     if main_module ~= nil then

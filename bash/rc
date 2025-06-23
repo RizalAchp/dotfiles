@@ -14,8 +14,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# [[ -f "$HOME/.config/bash/prompt" ]]      && source "$HOME/.config/bash/prompt";
-[[ -f "$HOME/.config/bash/profile" ]]     && source "$HOME/.config/bash/profile"
+[[ -f "$BASH_CONFIG_DIR/functions" ]] && source "$BASH_CONFIG_DIR/functions"
+[[ -f "$BASH_CONFIG_DIR/aliases" ]]   && source "$BASH_CONFIG_DIR/aliases"
+[[ -f "$BASH_CONFIG_DIR/exports" ]]      && source "$BASH_CONFIG_DIR/exports";
 
 ### SHOPT
 shopt -s autocd         # change to named directory
@@ -29,3 +30,5 @@ shopt -s checkwinsize   # checks term size when bash regains control
 shopt -s nocaseglob     # Case-insensitive globbing (used in pathname expansion)
 #ignore upper and lowercase when TAB completion
 bind -s 'set completion-ignore-case on'
+
+eval "$(zoxide init bash)"

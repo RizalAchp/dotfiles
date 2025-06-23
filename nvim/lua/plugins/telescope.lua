@@ -11,7 +11,7 @@ return {
     cmd = "Telescope",
     config = function()
         local telescope = require('telescope')
-        local fb_action = require 'telescope._extensions.file_browser.actions'
+        local fb_action = require('telescope._extensions.file_browser.actions')
         telescope.setup({
             extensions = {
                 ---@type telescope-file-browser.SetupOpts
@@ -22,7 +22,7 @@ return {
                     initial_mode = 'normal',
                     hidden = true,
                     no_ignore = true,
-                    file_ignore_patterns = {".git$"},
+                    file_ignore_patterns = { ".git$" },
                     previewer = nil,
                     mappings = {
                         ['n'] = {
