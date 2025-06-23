@@ -34,4 +34,5 @@ fi
 
 wmname 'LG3D'
 # window manager dwm
-exec dwm
+# exec dwm
+exec awesome -a

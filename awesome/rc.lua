@@ -17,9 +17,9 @@ require("awful.autofocus")
 local wibox         = require("wibox")
 local beautiful     = require("beautiful")
 local naughty       = require("naughty")
-local lain          = require("lain")
---local menubar       = require("menubar")
-local freedesktop   = require("freedesktop")
+local menubar       = require("menubar")
+local lain          = require("modules.lain")
+local freedesktop   = require("modules.freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -527,10 +527,11 @@ globalkeys = mytable.join(
         { description = "run browser", group = "launcher" }),
 
     -- Default
-    --[[ Menubar
+    --Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
-    --]]
+        { description = "show the menubar", group = "launcher" }),
+    --
+
     --[[ dmenu
     awful.key({ modkey }, "x", function ()
             os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
@@ -538,6 +539,7 @@ globalkeys = mytable.join(
         end,
         {description = "show dmenu", group = "launcher"}),
     --]]
+
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
     --[[ rofi
@@ -547,6 +549,8 @@ globalkeys = mytable.join(
         end,
         {description = "show rofi", group = "launcher"}),
     --]]
+
+
     -- Prompt
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
