@@ -1,0 +1,13 @@
+{
+    "diagnostics.globals": [
+        "awesome",
+        "client",
+        "screen",
+        "root",
+        "globalkeys",
+        "scrlocker",
+        "clientkeys",
+        "clientbuttons",
+        "tag"
+    ]
+}

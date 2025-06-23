@@ -4,6 +4,13 @@ draw_bold_text_with_bright_colors = true
 [env]
 TERM = "xterm-256color"
 
+[general]
+import = [
+    "~/.config/alacritty/themes/base16_default_dark.toml"
+    # "~/.config/alacritty/themes/github_dark_high_contrast.toml"
+]
+
+
 [font]
 size = 14.0
 
