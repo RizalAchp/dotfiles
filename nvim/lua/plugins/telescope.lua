@@ -1,8 +1,10 @@
+---@module 'lazy'
 ---@type LazySpec
 return {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
+    cond = not vim.g.vscode,
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-telescope/telescope-file-browser.nvim' },
@@ -75,8 +77,15 @@ return {
         map('<leader>sp', function() builtin.registers(theme) end, '[S]earch [P]aste (Clipboard Register)')
         map('<leader>st', function() builtin.builtin(theme) end, '[S]earch [T]elescope builtins')
         map('<leader>gf', function() builtin.git_files(theme) end, '[G]it [F]iles')
-        map('<leader><space>', function() builtin.buffers(theme) end, '[ ] Find existing buffers')
         map(';;', function() builtin.resume(theme) end, '[;][;] resume')
+
+        map('<leader><space>', function()
+            builtin.buffers(vim.tbl_deep_extend('force', {}, theme, {
+                ignore_current_buffer = true,
+                sort_mru = true,
+                initial_mode = 'normal',
+            }))
+        end, '[ ] Find existing buffers')
 
         map('<leader>/', function() builtin.current_buffer_fuzzy_find(theme) end, '[/] Fuzzily search in current buffer]')
 

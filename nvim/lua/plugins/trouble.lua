@@ -6,6 +6,7 @@ return {
         indent_lines = true,
         use_diagnostic_signs = "true",
     },
+    cond = not vim.g.vscode,
     lazy = true,
     keys = {
         {

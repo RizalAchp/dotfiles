@@ -1,4 +1,5 @@
 #!/bin/sh -e
+set -xe
 
 IMG=/tmp/screen_locked.png
 # Take a screenshot

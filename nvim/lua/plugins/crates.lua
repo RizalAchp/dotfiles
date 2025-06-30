@@ -1,6 +1,7 @@
 -- crates for cargo.toml plugins
 return {
     'saecki/crates.nvim',
+    cond = not vim.g.vscode,
     lazy = true,
     event = { "BufRead Cargo.toml" },
     tag = 'stable',

@@ -2,6 +2,7 @@ return {
     'folke/which-key.nvim',
     dependencies = { "nvim-tree/nvim-web-devicons", opts = {} },
     -- event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     ---@type wk.Opts
     opts = {

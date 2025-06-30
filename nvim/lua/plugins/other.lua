@@ -3,6 +3,7 @@ return {
     -- { 'nvimtools/none-ls.nvim' },
     {
         'norcalli/nvim-colorizer.lua',
+        cond = not vim.g.vscode,
         lazy = true,
         cmd = {
             'ColorizerAttachToBuffer',
@@ -14,6 +15,7 @@ return {
     {
         'mbbill/undotree',
         lazy = true,
+        cond = not vim.g.vscode,
         cmd = {
             'UndotreeFocus',
             'UndotreeHide',
@@ -37,6 +39,7 @@ return {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = "cd app && npm install",
+        cond = not vim.g.vscode,
         init = function()
             vim.g.mkdp_filetypes = { "markdown" }
         end,

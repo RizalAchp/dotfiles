@@ -3,6 +3,7 @@ return {
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
+    cond = not vim.g.vscode,
     opts = {
         indent = {
             highlight = {

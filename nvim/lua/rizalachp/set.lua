@@ -6,6 +6,7 @@ v.opt.winblend = 0
 v.opt.wildoptions = "pum"
 v.opt.pumblend = 5
 v.opt.background = "dark"
+v.opt.exrc = true
 
 vim.cmd [[
     let s:guifontsize = 10
@@ -41,7 +42,7 @@ v.g.netrw_keepdir = 0
 v.o.breakindent = true
 -- set.softtabstop = 4
 v.opt.expandtab = true
-v.opt.textwidth = 100
+v.opt.textwidth = 160
 -- v.opt.showtabline = 4
 v.opt.shiftwidth = 4
 v.opt.tabstop = 4
@@ -52,7 +53,7 @@ v.opt.shiftround = true
 v.opt.splitbelow = true
 v.opt.splitright = true
 v.opt.laststatus = 2
-v.opt.colorcolumn = "120"
+v.opt.colorcolumn = "160"
 v.opt.autochdir = false
 v.opt.hidden = true
 v.opt.inccommand = "split"
@@ -73,5 +74,10 @@ v.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, { pattern = '*', co
 v.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     pattern = { '*.c', '*.h' },
     command = [[set filetype=c]]
+})
+
+v.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+    pattern = { '*.ino' },
+    command = [[set filetype=cpp]]
 })
 vim.g.zig_fmt_autosave = 0

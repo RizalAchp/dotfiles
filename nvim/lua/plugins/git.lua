@@ -7,6 +7,7 @@ return {
         'nvim-telescope/telescope.nvim', -- optional
         -- 'echasnovski/mini.pick',         -- optional
     },
+    cond = not vim.g.vscode,
     lazy = true,
     config = true,
     cmd = {'Neogit', 'NeogitCommit', 'NeogitLogCurrent', 'NeogitResetState'},

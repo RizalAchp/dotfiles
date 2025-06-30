@@ -1,24 +1,39 @@
+---@module 'lazy'
 ---@type LazySpec
 return {
     'mrcjkb/rustaceanvim',
     version = '^6', -- Recommended
     lazy = false,   -- This plugin is already lazy
+    cond = not vim.g.vscode,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "mfussenegger/nvim-dap",
         "lvimuser/lsp-inlayhints.nvim",
+        "folke/neoconf.nvim",
     },
     config = function()
-        ---@module rustaceanvim
-        ---@type fun():rustaceanvim.Opts
+        require("neoconf").setup({})
+        ---@module 'rustaceanvim'
+        ---@return rustaceanvim.Config
         vim.g.rustaceanvim = function()
+            local settings = require("neoconf").get('vscode', {
+                ['rust-analyzer'] = {
+                    check = {
+                        command = "clippy",
+                    },
+                    cargo = {
+                        -- allTargets = true,
+                        -- allFeatures = true,
+                        buildScripts = { enable = true },
+                    },
+                    procMacro = { enable = true },
+                    -- completion = { postfix = { enable = false } }
+                },
+            });
             return {
-                ---@type rustaceanvim.lsp.ClientOpts
                 server = {
-                    standalone = false,
                     on_attach = function(c, bufnr)
-                        OnAttachLsp(c, bufnr)
-
+                        -- OnAttachLsp(c, bufnr)
                         ---@param keys string
                         ---@param cmd any
                         ---@param desc string|nil
@@ -53,20 +68,8 @@ return {
                         map('<leader>ee', { 'explainError', 'current' }, '[E]xplain [E]rror')
                         -- map('<F12>r', { 'flyCheck', 'run' }, "[R]render current [D]diagnostic ")
                     end,
-                    default_settings = {
-                        ['rust-analyzer'] = {
-                            check = {
-                                command = "clippy",
-                            },
-                            cargo = {
-                                -- allTargets = true,
-                                -- allFeatures = true,
-                                buildScripts = { enable = true }
-                            },
-                            procMacro = { enable = true },
-                            -- completion = { postfix = { enable = false } }
-                        },
-                    },
+
+                    default_settings = settings,
                 }
             }
         end

@@ -1,6 +1,7 @@
 return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
+    cond = not vim.g.vscode,
     dependencies = {
         { 'rafamadriz/friendly-snippets' },
         { 'saadparwaiz1/cmp_luasnip' },

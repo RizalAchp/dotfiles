@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
+
 ---@type vim.lsp.client.on_attach_cb
 function _G.OnAttachLsp(_, buf)
     local nmap = function(keys, func, desc)

@@ -1,7 +1,10 @@
+---@module 'lazy'
+---@type LazySpec
 return {
     'aktersnurra/no-clown-fiesta.nvim',
     lazy = false,
     priority = 1000,
+    cond = not vim.g.vscode,
     init = function()
         require("no-clown-fiesta").setup({
             styles = {

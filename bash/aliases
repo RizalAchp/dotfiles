@@ -159,6 +159,8 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo \"Now log out.\""
 alias f="fzf --preview \"bat --color=always --style=numbers --line-range=:500 {}\""
 alias ipp="ip -s -c -h a"
 
+alias cat='bat'
+
 alias open="xdg-open"
 # cargo
 if which 'cargo' &> /dev/null; then

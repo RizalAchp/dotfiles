@@ -2,6 +2,7 @@
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = { "nvim-tree/nvim-web-devicons", opts = {} },
+    cond = not vim.g.vscode,
     opts = {
         options = {
             theme = vim.g.colors_name or "auto",

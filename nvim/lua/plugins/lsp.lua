@@ -1,11 +1,11 @@
 return {
     'neovim/nvim-lspconfig',
+    cond = not vim.g.vscode,
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
-
         -- Useful status updates for LSP
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { 'j-hui/fidget.nvim', tag = 'v1.4.5', opts = {} },
@@ -33,13 +33,26 @@ return {
         },
     },
     config = function()
+        -- require("neoconf").setup({ })
         -- LSP servers and clients are able to communicate to each other what features they support.
         --  By default, Neovim doesn't support everything that is in the LSP specification.
         --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
         --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
         local capabilities     = require('blink.cmp').get_lsp_capabilities()
+        ---@type table<string, vim.lsp.ClientConfig>
         local servers          = {
             clangd = {},
+            -- arduino_language_server = {
+            --     settings = {
+            --     },
+            --     cmd = {
+            --         "arduino-language-server",
+            --         "-clangd", "/usr/bin/clangd",
+            --         "-cli", "/usr/bin/ardun",
+            --         "-cli-config", "C:/Users/danie/AppData/Local/Arduino15/arduino-cli.yaml",
+            --         "-fqbn", "arduino:esp32:nano_nora"
+            --     },
+            -- },
             lua_ls = {
                 -- cmd = { ... },
                 -- filetypes = { ... },
@@ -50,15 +63,23 @@ return {
                             callSnippet = 'Replace',
                         },
                         -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
+                        diagnostics = { disable = { 'missing-fields' } },
+                        format = {
+                            enable = true,
+                            defaultConfig = {
+                                indent_style = "space",
+                                indent_size = "4",
+                                max_line_length = "160",
+                            },
+                        },
                     },
                 },
             },
         }
         local ensure_installed = vim.tbl_keys(servers)
-        vim.list_extend(ensure_installed, {
-            'stylua', -- Used to format Lua code
-        })
+        -- vim.list_extend(ensure_installed, {
+        --     'stylua', -- Used to format Lua code
+        -- })
         require('mason').setup()
         require('mason-tool-installer').setup { ensure_installed = ensure_installed, }
         require('mason-lspconfig').setup({

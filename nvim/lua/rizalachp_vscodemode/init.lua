@@ -1,4 +1,3 @@
-require("rizalachp.init")
 require("rizalachp.set")
 require("rizalachp_vscodemode.keymap")
 

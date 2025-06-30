@@ -4,10 +4,7 @@
         "client",
         "screen",
         "root",
-        "globalkeys",
-        "scrlocker",
-        "clientkeys",
-        "clientbuttons",
-        "tag"
+        "tag",
+        "mouse"
     ]
 }
