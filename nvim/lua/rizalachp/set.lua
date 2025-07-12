@@ -1,83 +1,108 @@
-local v = vim
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
-v.lsp.set_log_level("OFF")
-v.opt.cursorline = true
-v.opt.winblend = 0
-v.opt.wildoptions = "pum"
-v.opt.pumblend = 5
-v.opt.background = "dark"
-v.opt.exrc = true
+-- Basic
+vim.opt.number = true         -- line number
+vim.opt.relativenumber = true -- relative line number
+vim.opt.cursorline = true     -- highlight current line
+vim.opt.wrap = false          -- Don't wrap line
+vim.opt.scrolloff = 10        -- Keep 10 lines above/below cursor
+vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
+
+-- Indentation
+vim.opt.tabstop = 4        -- Tab width
+vim.opt.shiftwidth = 4     -- Indent width
+-- v.opt.softtabstop = 4             -- soft tab stop
+vim.opt.expandtab = true   -- use spaces instead of tab
+vim.opt.smartindent = true -- auto smart indenting
+vim.opt.autoindent = true  -- copy indent from current line
+
+-- Search settings
+vim.opt.ignorecase = true -- Case insensitive search
+vim.opt.smartcase = true  -- Case sensitive if uppercase in search
+vim.opt.hlsearch = false  -- Don't highlight search results
+vim.opt.incsearch = true  -- Show matches as you type
+
+-- Visual settings
+vim.opt.termguicolors = true                      -- Enable 24-bit colors
+vim.opt.signcolumn = "yes"                        -- Always show sign column
+vim.opt.colorcolumn = "100"                       -- Show column at 100 characters
+vim.opt.showmatch = true                          -- Highlight matching brackets
+vim.opt.matchtime = 2                             -- How long to show matching bracket
+vim.opt.cmdheight = 1                             -- Command line height
+vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
+vim.opt.showmode = false                          -- Don't show mode in command line
+vim.opt.pumheight = 10                            -- Popup menu height
+vim.opt.pumblend = 10                             -- Popup menu transparency
+vim.opt.winblend = 0                              -- Floating window transparency
+vim.opt.conceallevel = 0                          -- Don't hide markup
+vim.opt.concealcursor = ""                        -- Don't hide cursor line markup
+vim.opt.lazyredraw = true                         -- Don't redraw during macros
+vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
+
+-- File handling
+vim.opt.backup = false      -- Don't create backup files
+vim.opt.writebackup = false -- Don't create backup before writing
+vim.opt.swapfile = false    -- Don't create swap files
+vim.opt.undofile = true     -- Persistent undo
+vim.opt.updatetime = 300    -- Faster completion
+vim.opt.timeoutlen = 500    -- Key timeout duration
+vim.opt.ttimeoutlen = 0     -- Key code timeout
+vim.opt.autoread = true     -- Auto reload files changed outside vim
+vim.opt.autowrite = false   -- Don't auto save
+
+-- Behavior settings
+vim.opt.hidden = true                   -- Allow hidden buffers
+vim.opt.errorbells = false              -- No error bells
+vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
+vim.opt.autochdir = false               -- Don't auto change directory
+vim.opt.iskeyword:append("-")           -- Treat dash as part of word
+vim.opt.path:append("**")               -- include subdirectories in search
+vim.opt.selection = "exclusive"         -- Selection behavior
+vim.opt.mouse = "a"                     -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.modifiable = true               -- Allow buffer modifications
+vim.opt.encoding = "UTF-8"              -- Set encoding
+
+-- Folding settings
+vim.opt.foldmethod = 'marker' -- Use marker for folding
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Use treesitter for folding
+vim.opt.foldlevel = 99        -- Start with all folds open
+
+-- Split behavior
+vim.opt.splitbelow = true -- Horizontal splits go below
+vim.opt.splitright = true -- Vertical splits go right
+
+-- Key mappings
+vim.g.mapleader = ' '      -- Set leader key to space
+vim.g.maplocalleader = ' ' -- Set local leader key (NEW)
 
 vim.cmd [[
     let s:guifontsize = 10
     let s:guifont = "JetBrainsMono\\ Nerd\\ Font"
 ]]
 
-v.opt.termguicolors = true
-v.opt.list = true
+vim.opt.wildoptions = "pum"
+vim.opt.background = "dark"
+vim.opt.grepprg = "rg --vimgrep --smart-case --follow"
+-- Command-line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+-- Better diff options
+vim.opt.diffopt:append("linematch:60")
+-- Performance improvements
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000
 
-v.opt.undofile = true
+-- Tab display settings
+vim.opt.showtabline = 1 -- Always show tabline (0=never, 1=when multiple tabs, 2=always)
+vim.opt.tabline = ''    -- Use default tabline (empty string uses built-in)
 
-v.opt.clipboard = v.opt.clipboard + "unnamedplus"
-v.opt.wrap = false
-v.opt.showmatch = true
-v.opt.showmode = false
-v.opt.cursorline = true
-v.opt.number = true
-v.opt.relativenumber = true
+-- Transparent tabline appearance
+vim.cmd([[
+  hi TabLineFill guibg=NONE ctermfg=242 ctermbg=NONE
+]])
 
-v.opt.grepprg = "rg --vimgrep --smart-case --follow"
-v.opt.incsearch = true
-v.opt.hlsearch = true
-
-v.opt.ignorecase = true
-v.opt.smartcase = true
-
-v.opt.scrolloff = 6
-v.opt.sidescrolloff = 6
-v.opt.backspace = "indent,start,eol"
-v.opt.mouse = 'a'
-v.wo.signcolumn = 'yes'
-v.g.netrw_keepdir = 0
-v.o.breakindent = true
--- set.softtabstop = 4
-v.opt.expandtab = true
-v.opt.textwidth = 160
--- v.opt.showtabline = 4
-v.opt.shiftwidth = 4
-v.opt.tabstop = 4
-v.opt.smarttab = true
-v.opt.smartindent = true
-v.opt.autoindent = true
-v.opt.shiftround = true
-v.opt.splitbelow = true
-v.opt.splitright = true
-v.opt.laststatus = 2
-v.opt.colorcolumn = "160"
-v.opt.autochdir = false
-v.opt.hidden = true
-v.opt.inccommand = "split"
-v.opt.completeopt = "menuone,noselect,noinsert"
-v.opt.shortmess = v.opt.shortmess + "c"
-v.opt.lazyredraw = true
-
-v.opt.foldmethod = 'marker'
-v.opt.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-
-v.g.mapleader = ' '
-v.g.maplocalleader = ' '
-
-v.g.mkdp_browser = '/usr/bin/brave'
-v.g.mkdp_echo_preview_url = 1
-
-v.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, { pattern = '*', command = [[normal zR]] })
-v.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-    pattern = { '*.c', '*.h' },
-    command = [[set filetype=c]]
-})
-
-v.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-    pattern = { '*.ino' },
-    command = [[set filetype=cpp]]
-})
 vim.g.zig_fmt_autosave = 0

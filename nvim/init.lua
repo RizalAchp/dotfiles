@@ -3,5 +3,4 @@ if vim.g.vscode then
 else
     require('rizalachp')
 end
-
 require('plugins').init()

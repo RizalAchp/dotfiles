@@ -10,16 +10,12 @@ return {
         { 'nvim-telescope/telescope-file-browser.nvim' },
         { -- If encountering errors, see telescope-fzf-native README for installation instructions
             'nvim-telescope/telescope-fzf-native.nvim',
-
             -- `build` is used to run some command when the plugin is installed/updated.
             -- This is only run then, not every time Neovim starts up.
             build = 'make',
-
             -- `cond` is a condition used to determine whether this plugin should be
             -- installed and loaded.
-            cond = function()
-                return vim.fn.executable 'make' == 1
-            end,
+            cond = function() return vim.fn.executable 'make' == 1 end,
         },
         { 'nvim-telescope/telescope-ui-select.nvim' },
     },
@@ -27,6 +23,9 @@ return {
     cmd = "Telescope",
     config = function()
         local telescope = require('telescope')
+        local theme = require('telescope.themes').get_ivy({
+            layout_config = { height = 0.5 },
+        })
         local fb_action = require('telescope._extensions.file_browser.actions')
         telescope.setup({
             extensions = {
@@ -51,16 +50,26 @@ return {
                         },
                     },
                 },
+                fzf = {
+                    fuzzy = true,                   -- false will only do exact matching
+                    override_generic_sorter = true, -- override the generic sorter
+                    override_file_sorter = true,    -- override the file sorter
+                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+                    -- the default case_mode is "smart_case"
+                },
+
+                ["ui-select"] = {
+                    require("telescope.themes").get_dropdown {
+                        -- even more opts
+                    }
+                }
             },
         })
         -- Enable Telescope extensions if they are installed
         pcall(require('telescope').load_extension, 'fzf')
         pcall(require('telescope').load_extension, 'ui-select')
-        telescope.load_extension('file_browser')
+        pcall(require('telescope').load_extension, 'file_browser')
 
-        local theme = require('telescope.themes').get_ivy({
-            layout_config = { height = 0.5 },
-        })
         local map = function(key, func, desc)
             vim.keymap.set({ 'n', 'v' }, key, func, { desc = desc, silent = true, noremap = true })
         end

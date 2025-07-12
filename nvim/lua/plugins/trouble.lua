@@ -12,32 +12,32 @@ return {
         {
             "<leader>xx",
             "<cmd>Trouble diagnostics toggle focus=true<cr>",
-            desc = "TROUBLE: Diagnostics (Trouble)",
+            desc = "TROUBLE: Diagnostics",
         },
         {
             "<leader>xX",
             "<cmd>Trouble diagnostics toggle focus=true filter.buf=0<cr>",
-            desc = "TROUBLE: Buffer Diagnostics (Trouble)",
+            desc = "TROUBLE: Buffer Diagnostics",
         },
         {
-            "<leader>cs",
+            "<leader>xs",
             "<cmd>Trouble symbols toggle focus=true<cr>",
-            desc = "TROUBLE: Symbols (Trouble)",
+            desc = "TROUBLE: Symbols)",
         },
         {
-            "<leader>cl",
+            "<leader>xl",
             "<cmd>Trouble lsp toggle focus=true win.position=right<cr>",
-            desc = "TROUBLE: LSP Definitions / references / ... (Trouble)",
+            desc = "TROUBLE: LSP Definitions / references / ...",
         },
         {
             "<leader>xL",
             "<cmd>Trouble loclist toggle<cr>",
-            desc = "TROUBLE: Location List (Trouble)",
+            desc = "TROUBLE: Location List",
         },
         {
-            "<leader>xQ",
+            "<leader>xq",
             "<cmd>Trouble qflist toggle focus=true<cr>",
-            desc = "TROUBLE: Quickfix List (Trouble)",
+            desc = "TROUBLE: Quickfix List",
         },
     },
 }

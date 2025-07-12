@@ -173,5 +173,6 @@ fi
 
 alias tt="gio trash"
 alias uflatpak="flatpak --user"
+alias neogit='nvim +Neogit'
 # alias stmake="/opt/st/stm32cubeide_1.11.2/headless-build.sh"
 # alias get_idf=". $HOME/Programming/esp-idf/export.fish"
