@@ -28,7 +28,7 @@ theme.menu_width               = dpi(120)
 
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon    = true
-theme.useless_gap              = dpi(5)
+theme.useless_gap              = dpi(0)
 
 theme.menu_submenu_icon        = theme.dir .. '/icons/submenu.png'
 theme.taglist_squares_sel      = theme.dir .. '/icons/square_sel.png'

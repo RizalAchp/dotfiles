@@ -74,6 +74,12 @@ local rules = function(cfg)
         { rule = { class = 'KiCad' },          properties = { tag = tagname(4), switchtotag = true } },
         -- neovide
         { rule = { class = 'neovide' },        properties = { floating = true } },
+
+        -- stm32cubemx
+        {
+            rule = { class = 'com-st-microxplorer-maingui-STM32CubeMX' },
+            properties = { tag = tagname(4), switchtotag = true }
+        },
     }
 end
 
