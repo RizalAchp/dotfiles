@@ -1,0 +1,17 @@
+#.Xresources|symlink|
+.gitconfig|symlink|
+#.gtkrc-2.0|symlink|
+#.xinitrc|symlink|
+.config/starship.toml|symlink|
+.config/user-dirs.dirs|symlink|
+.config/user-dirs.locale|symlink|
+#alacritty|symlink|.config
+bash|symlink|.config
+.bashrc|sy# mlink0
+.bash_profile|symlink|
+#.Xmodmap|symlink|
+nvim|symlink|.config
+bin|symlink|
+#fish|symlink|.config
+#awesome|symlink|.config
+#settings.ini|symlink|.config/gtk-3.0
