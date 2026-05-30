@@ -22,12 +22,12 @@ return {
                         command = "clippy",
                     },
                     cargo = {
-                        -- allTargets = true,
-                        -- allFeatures = true,
+                        allTargets = true,
+                        allFeatures = true,
                         buildScripts = { enable = true },
                     },
                     procMacro = { enable = true },
-                    -- completion = { postfix = { enable = false } }
+                    completion = { postfix = { enable = false } }
                 },
             });
             return {
@@ -52,7 +52,7 @@ return {
                         map('J', 'joinLines', '[J]oin [L]ines')
 
                         map('<leader>em', 'expandMacro', '[E]xpand [M]acro')
-                        map('<leader>tt', 'testables', '[R]un [T]ests')
+                        -- map('<leader>tt', 'testables', '[R]un [T]ests')
                         map('<leader>oc', 'openCargo', '[O]pen [C]argo.toml')
                         map('<leader>rpm', 'rebuildProcMacros', '[R]ebuild [P]roc [M]acro')
                         map('<leader>st', 'syntaxTree', '[S]intax [T]ree')
@@ -66,7 +66,7 @@ return {
                         map('g.', { 'renderDiagnostic', 'cycle' }, '[G]oto Diagnostic (cycling)')
                         map('<leader>rd', { 'renderDiagnostic', 'current' }, '[R]render current [D]diagnostic')
                         map('<leader>ee', { 'explainError', 'current' }, '[E]xplain [E]rror')
-                        -- map('<F12>r', { 'flyCheck', 'run' }, "[R]render current [D]diagnostic ")
+                        map('<F8>', { 'flyCheck', 'run' }, "[R]render current [D]diagnostic ")
                     end,
 
                     default_settings = settings,

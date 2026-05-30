@@ -46,6 +46,7 @@ function _G.OnAttachLsp(_, buf)
             vim.lsp.buf.formatting()
         end
     end, { desc = "Format current buffer with LSP" })
+    nmap('<leader>f', ":Format<CR>", 'Format Document')
 end
 
 -- terminal
@@ -109,8 +110,7 @@ function _G.FloatingTerminal()
     end
 
     if not has_terminal then
-        -- vim.fn.termopen(os.getenv("SHELL"))
-        vim.fn.jobstart(os.getenv("SHELL") or '/usr/bin/sh', { term = true })
+        vim.fn.jobstart(_G.Shell, { term = true })
     end
 
     floating_terminal_state.is_open = true

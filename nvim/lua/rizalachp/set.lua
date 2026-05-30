@@ -2,6 +2,36 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+local mySysname = vim.loop.os_uname().sysname
+local isWin = mySysname:find 'Windows' and true or false
+
+if isWin then
+    local shell = "powershell.exe" --"powershell" for 5.x
+    if vim.fn.executable("pwsh") == 1 then
+        shell = "pwsh.exe"         --"pwsh" for 7.x if installed
+    end
+    -- vim.opt.shellcmdflag =
+    -- "-NoProfile -NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering='plaintext';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+    vim.opt.shell = shell
+    -- Setting shell command flags
+    vim.o.shellcmdflag =
+    '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[\'Out-File:Encoding\']=\'utf8\';'
+
+    -- Setting shell redirection
+    vim.o.shellredir = '2>&1 | %{ "$_" } | Out-File %s; exit $LastExitCode'
+
+    -- Setting shell pipe
+    vim.o.shellpipe = '2>&1 | %{ "$_" } | Tee-Object %s; exit $LastExitCode'
+
+    -- Setting shell quote options
+    vim.o.shellquote = ''
+    vim.o.shellxquote = ''
+    _G.Shell = shell
+else
+    _G.Shell = os.getenv("SHELL") or '/usr/bin/sh'
+    vim.opt.shell = _G.Shell
+end
+
 -- Basic
 vim.opt.number = true         -- line number
 vim.opt.relativenumber = true -- relative line number
