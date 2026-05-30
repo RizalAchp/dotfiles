@@ -39,7 +39,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="$XDG_DATA_HOME/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
 
-# add2path_front "$HOME/bin"
+add2path_front "$HOME/bin"
 add2path_front "$HOME/.local/bin"
 add2path_front "$HOME/.local/share/flatpak/exports/bin"
 add2path_front "/var/lib/flatpak/exports/bin"

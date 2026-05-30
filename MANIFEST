@@ -11,7 +11,7 @@ bash|symlink|.config
 .bash_profile|symlink|
 .Xmodmap|symlink|
 nvim|symlink|.config
-bin|symlink|.local
+bin|symlink|
 #fish|symlink|.config
 awesome|symlink|.config
 settings.ini|symlink|.config/gtk-3.0

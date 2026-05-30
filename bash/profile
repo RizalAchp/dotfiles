@@ -3,6 +3,10 @@
 [[ -f "$HOME/.config/bash/functions" ]] && source "$HOME/.config/bash/functions";
 [[ -f "$HOME/.config/bash/exports" ]]   && source "$HOME/.config/bash/exports";
 
+if [ -f "$HOME/.bash_profile" ]; then
+. "$HOME/.bashrc"
+fi
+
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
 fi
