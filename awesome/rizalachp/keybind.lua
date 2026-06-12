@@ -92,12 +92,8 @@ function keybind.global()
         -- Awful.key({ }, 'XF86AudioLowerVolume',  Apps.alsa_down.run,         { description = 'volume down',                      group = 'hotkeys' }),
         -- Awful.key({ }, 'XF86AudioMute',         Apps.alsa_mute.run,         { description = 'toggle mute',                      group = 'hotkeys' }),
 
-        Awful.key({ }, 'XF86Launch1',           Xrandr.xrandr,              { description = 'toggle mute',                      group = 'hotkeys' }),
-
-
+        Awful.key({ }, 'XF86Launch1',           Apps.xrandr.xrandr,              { description = 'toggle mute',                      group = 'hotkeys' }),
         Awful.key({ 'Control' },       'space', Naughty.destroy_all_notifications, { description = 'destroy all notifications', group = 'hotkeys' })
-
-
 
     -- awful.key({ ModKey }, 'x',
     --     function()
@@ -188,6 +184,5 @@ function keybind.client()
 end
 
 -- stylua: ignore end
-
 
 return keybind
