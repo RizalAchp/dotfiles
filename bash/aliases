@@ -6,7 +6,7 @@
 # alias c="echo -en "\x1b[2J\x1b[1;1H" ; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo; echo"
 # alias config="/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME"
 # alias sail="[ -f sail ] && sh sail || sh ./vendor/bin/sail"
-alias home_git='/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.home'
+# alias home_git='/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.home'
 # ncdu alias, for checking size on harddrive
 # alias disk="ncdu ."
 alias ds="dua i"
@@ -79,7 +79,10 @@ if which 'pacman' &> /dev/null; then
     alias parsyu="paru -Syu --noconfirm"
     alias unlock="sudo rm /var/lib/pacman/db.lck"
     alias cleanup="sudo pacman -Rns `pacman -Qtdq`"
-# get fastest mirrors
+fi
+
+if which 'reflector' &> /dev/null; then
+    # get fastest mirrors
     alias mirror="sudo reflector -f 30 -l 30 --number 20 --verbose --save /etc/pacman.d/mirrorlist"
     alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
     alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
@@ -94,7 +97,7 @@ alias fgrep="fgrep --color=auto"
 # confirm before overwriting something
 alias cp="cp -i -v"
 alias mv="mv -i -v"
-alias rm='trash -i -v'
+alias rm='rm -i -v'
 
 # adding flags
 alias df="df -h"
